@@ -22,6 +22,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Remove workspace config
+        run: rm -f pnpm-workspace.yaml
+
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
@@ -33,7 +36,7 @@ jobs:
           node-version: 22
 
       - name: Install dependencies
-        run: pnpm install --ignore-workspace
+        run: pnpm install
 
       - name: Build Astro
         run: pnpm run build
