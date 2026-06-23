@@ -33,7 +33,7 @@ jobs:
           node-version: 22
 
       - name: Install dependencies
-        run: pnpm install --no-workspace
+        run: pnpm install --ignore-workspace
 
       - name: Build Astro
         run: pnpm run build
