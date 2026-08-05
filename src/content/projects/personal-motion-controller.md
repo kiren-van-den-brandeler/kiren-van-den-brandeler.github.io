@@ -7,7 +7,7 @@ discipline:
   - "industrial-design"
 featured: true
 featuredOrder: 2
-coverImage: "/assets/stopmotion_robot/Robot Travelling.gif"
+coverImage: "/assets/stopmotion_robot/robot-travelling.gif"
 date: 2025-01-15
 ---
 
