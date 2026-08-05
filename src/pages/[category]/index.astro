@@ -1,0 +1,60 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Grid from '../../components/Grid.astro';
+import PortfolioPreview from '../../components/PortfolioPreview.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
+
+const categoryLabels = {
+	work: 'Professional Work',
+	personal: 'Personal Projects',
+	studies: 'Studies & Research',
+};
+
+export async function getStaticPaths() {
+	return [
+		{ params: { category: 'personal' } },
+		{ params: { category: 'studies' } },
+	];
+}
+
+const category = Astro.params.category;
+const projects = (await getCollection('projects'))
+	.filter((project) => project.data.category === category)
+	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title={categoryLabels[category] ?? 'Projects'} description={`Projects in the ${category} category`}>
+	<div class="stack gap-20">
+		<main class="wrapper stack gap-8">
+			<header class="section-header stack gap-2 lg:gap-4">
+				<h1>{categoryLabels[category] ?? 'Projects'}</h1>
+				<p>Browse {categoryLabels[category]?.toLowerCase()} created across PLC/Robotics, engineering, and industrial design.</p>
+			</header>
+
+			{projects.length > 0 ? (
+				<Grid variant="offset">
+					{projects.map((project) => (
+						<li>
+							<PortfolioPreview project={project} />
+						</li>
+					))}
+				</Grid>
+			) : (
+				<p>No projects found in this category yet.</p>
+			)}
+		</main>
+
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.section-header {
+		max-width: 58ch;
+	}
+
+	.section-header h1 {
+		font-size: var(--text-4xl);
+	}
+</style>
