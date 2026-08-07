@@ -15,9 +15,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 // Content Fetching: Featured projects from the `projects` collection
 const featuredProjects = (await getCollection('projects'))
-	.filter((p) => p.data.featured)
-	.sort((a, b) => (a.data.featuredOrder ?? 999) - (b.data.featuredOrder ?? 999))
-	.slice(0, 4);
+    .filter((p) => p.data.featured)
+    .sort((a, b) => (a.data.featuredOrder ?? 999) - (b.data.featuredOrder ?? 999))
+    .slice(0, 4);
+
+// Technical stack cards to replace template boilerplate placeholders
+const techStack = [
+    { title: 'CODESYS & PLC', subtitle: 'IEC 61131-3 State Logic' },
+    { title: 'ABB RobotStudio', subtitle: 'RAPID Path Programming' },
+    { title: 'Autodesk Inventor', subtitle: 'Parametric 3D Assembly' },
+    { title: 'AutoCAD & AS1100', subtitle: 'Production DXF / Drafting' },
+    { title: 'Embedded & IoT', subtitle: 'ESP8266 / Arduino / C++' },
+    { title: 'FluidSIM & Vision', subtitle: 'Electro-Pneumatics & Quality' },
+];
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/basics/astro-components/
@@ -29,13 +39,13 @@ const featuredProjects = (await getCollection('projects'))
             <header class="hero">
                 <Hero
                     title="Hi — I'm Kiren van den Brandeler"
-                    tagline="Multidisciplinary Engineer & Designer — PLC/Robotics · Engineering · Industrial Design"
+                    tagline="Mechatronics & Automation Engineer — PLC Logic · Mechanical CAD · Embedded Systems"
                     align="start"
                 >
                     <div class="roles">
-                        <Pill><Icon icon="cpu" size="1.33em" /> PLC & Robotics</Pill>
-                        <Pill><Icon icon="terminal-window" size="1.33em" /> Engineering</Pill>
-                        <Pill><Icon icon="pencil-line" size="1.33em" /> Industrial Design</Pill>
+                        <Pill><Icon icon="cpu" size="1.33em" /> PLC & Automation</Pill>
+                        <Pill><Icon icon="gear" size="1.33em" /> Parametric CAD</Pill>
+                        <Pill><Icon icon="terminal-window" size="1.33em" /> Embedded Systems</Pill>
                     </div>
                 </Hero>
 
@@ -47,10 +57,10 @@ const featuredProjects = (await getCollection('projects'))
                 />
             </header>
 
-			<Skills />
-		</div>
+            <Skills />
+        </div>
 
-		<main class="wrapper stack gap-20 lg:gap-48">
+        <main class="wrapper stack gap-20 lg:gap-48">
             <section class="section with-background with-cta">
                 <header class="section-header stack gap-2 lg:gap-4">
                     <h3>Featured Projects</h3>
@@ -78,331 +88,353 @@ const featuredProjects = (await getCollection('projects'))
             </section>
 
             <section class="section quick-nav cards-section">
-            	<header class="section-header stack gap-2 lg:gap-4">
-            		<h3>Explore by Category</h3>
-            		<p>Choose a track for your background: industry systems, side-builds, or academic design research.</p>
-            	</header>
+                <header class="section-header stack gap-2 lg:gap-4">
+                    <h3>Explore by Category</h3>
+                    <p>Featuring professional engineering work, self-directed DIY projects, and academic research.</p>
+                </header>
 
-            	<div class="card-grid">
-            		<a class="category-card work" href="/work/">
-            			<div class="icon-card"><Icon icon="terminal-window" size="1.5em" /></div>
-            			<div class="card-content">
-            				<p class="eyebrow">Work</p>
-            				<h4>Professional engineering portfolios</h4>
-            				<p>Industry automation, PLC controls, and manufacturing-ready project delivery.</p>
-            				<span class="link-text">View Work projects <Icon icon="arrow-right" size="1rem" /></span>
-            			</div>
-            		</a>
+                <div class="card-grid">
+                    <a class="category-card work" href="/work/">
+                        <div class="icon-card"><Icon icon="terminal-window" size="1.5em" /></div>
+                        <div class="card-content">
+                            <p class="eyebrow">Work</p>
+                            <h4>Industrial Engineering</h4>
+                            <p>PLC control logic, ABB industrial robotics, and manufacturing automation setups.</p>
+                            <span class="link-text">View Work projects <Icon icon="arrow-right" size="1rem" /></span>
+                        </div>
+                    </a>
 
-            		<a class="category-card personal" href="/personal/">
-            			<div class="icon-card"><Icon icon="rocket-launch" size="1.5em" /></div>
-            			<div class="card-content">
-            				<p class="eyebrow">Personal</p>
-            				<h4>DIY builds and experimentations</h4>
-            				<p>Featured work includes my Arduino stop-motion motion controller and other self-directed systems.</p>
-            				<span class="link-text">Explore Personal projects <Icon icon="arrow-right" size="1rem" /></span>
-            			</div>
-            		</a>
+                    <a class="category-card personal" href="/personal/">
+                        <div class="icon-card"><Icon icon="rocket-launch" size="1.5em" /></div>
+                        <div class="card-content">
+                            <p class="eyebrow">Personal</p>
+                            <h4>DIY & Custom Builds</h4>
+                            <p>Self-directed hardware projects, including custom Arduino motion controllers and telemetry systems.</p>
+                            <span class="link-text">Explore Personal projects <Icon icon="arrow-right" size="1rem" /></span>
+                        </div>
+                    </a>
 
-            		<a class="category-card studies" href="/studies/">
-            			<div class="icon-card"><Icon icon="pencil-line" size="1.5em" /></div>
-            			<div class="card-content">
-            				<p class="eyebrow">Studies</p>
-            				<h4>Research, courses, and prototype design</h4>
-            				<p>Explore design research like the Weaverbot 3D house printer and multidisciplinary course projects.</p>
-            				<span class="link-text">See Studies projects <Icon icon="arrow-right" size="1rem" /></span>
-            			</div>
-            		</a>
-            	</div>
+                    <a class="category-card studies" href="/studies/">
+                        <div class="icon-card"><Icon icon="pencil-line" size="1.5em" /></div>
+                        <div class="card-content">
+                            <p class="eyebrow">Studies</p>
+                            <h4>Research & Prototyping</h4>
+                            <p>Academic design research, parametric CAD modeling, and additive manufacturing builds like Weaverbot.</p>
+                            <span class="link-text">See Studies projects <Icon icon="arrow-right" size="1rem" /></span>
+                        </div>
+                    </a>
+                </div>
             </section>
 
             <section class="section with-background bg-variant">
                 <header class="section-header stack gap-2 lg:gap-4">
-                    <h3>Technical Expertise</h3>
+                    <h3>Technical Toolset</h3>
                     <p>
-                        A summary of specialized tools, engineering standards, and software systems 
-                        utilized throughout my academic and industry design projects.
+                        Specialized software environments, industrial standards, and hardware platforms 
+                        utilized throughout my engineering projects.
                     </p>
                 </header>
 
-				<div class="gallery">
-					<Grid variant="small">
-						{
-							['Medium', 'BuzzFeed', 'The Next Web', 'awwwards.', 'TechCrunch'].map((brand) => (
-								<li class="mention-card">
-									<p>{brand}</p>
-								</li>
-							))
-						}
-					</Grid>
-				</div>
-			</section>
-		</main>
+                <div class="gallery">
+                    <Grid variant="small">
+                        {
+                            techStack.map((item) => (
+                                <li class="mention-card">
+                                    <div class="mention-content">
+                                        <p class="mention-title">{item.title}</p>
+                                        <span class="mention-subtitle">{item.subtitle}</span>
+                                    </div>
+                                </li>
+                            ))
+                        }
+                    </Grid>
+                </div>
+            </section>
+        </main>
 
-		<ContactCTA />
-	</div>
+        <ContactCTA />
+    </div>
 </BaseLayout>
 
 <style>
-	.hero {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 2rem;
-	}
+    .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
 
-	.roles {
-		display: none;
-	}
+    .roles {
+        display: none;
+    }
 
-	.hero img {
-		aspect-ratio: 5 / 4;
-		object-fit: cover;
-		object-position: top;
-		border-radius: 1.5rem;
-		box-shadow: var(--shadow-md);
-	}
+    .hero img {
+        aspect-ratio: 5 / 4;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 1.5rem;
+        box-shadow: var(--shadow-md);
+    }
 
-	@media (min-width: 50em) {
-		.hero {
-			display: grid;
-			grid-template-columns: 6fr 4fr;
-			padding-inline: 2.5rem;
-			gap: 3.75rem;
-		}
+    @media (min-width: 50em) {
+        .hero {
+            display: grid;
+            grid-template-columns: 6fr 4fr;
+            padding-inline: 2.5rem;
+            gap: 3.75rem;
+        }
 
-		.roles {
-			margin-top: 0.5rem;
-			display: flex;
-			gap: 0.5rem;
-		}
+        .roles {
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+        }
 
-		.hero img {
-			aspect-ratio: 3 / 4;
-			border-radius: 4.5rem;
-			object-fit: cover;
-		}
-	}
+        .hero img {
+            aspect-ratio: 3 / 4;
+            border-radius: 4.5rem;
+            object-fit: cover;
+        }
+    }
 
-	/* ====================================================== */
+    /* ====================================================== */
 
-	.section {
-		display: grid;
-		gap: 2rem;
-	}
+    .section {
+        display: grid;
+        gap: 2rem;
+    }
 
-	.with-background {
-		position: relative;
-	}
+    .with-background {
+        position: relative;
+    }
 
-	.with-background::before {
-		--hero-bg: var(--bg-image-subtle-2);
+    .with-background::before {
+        --hero-bg: var(--bg-image-subtle-2);
 
-		content: '';
-		position: absolute;
-		pointer-events: none;
-		left: 50%;
-		width: 100vw;
-		aspect-ratio: calc(2.25 / var(--bg-scale));
-		top: 0;
-		transform: translateY(-75%) translateX(-50%);
-		background:
-			url('/assets/backgrounds/noise.png') top center/220px repeat,
-			var(--hero-bg) center center / var(--bg-gradient-size) no-repeat,
-			var(--gray-999);
-		background-blend-mode: overlay, normal, normal, normal;
-		mix-blend-mode: var(--bg-blend-mode);
-		z-index: -1;
-	}
+        content: '';
+        position: absolute;
+        pointer-events: none;
+        left: 50%;
+        width: 100vw;
+        aspect-ratio: calc(2.25 / var(--bg-scale));
+        top: 0;
+        transform: translateY(-75%) translateX(-50%);
+        background:
+            url('/assets/backgrounds/noise.png') top center/220px repeat,
+            var(--hero-bg) center center / var(--bg-gradient-size) no-repeat,
+            var(--gray-999);
+        background-blend-mode: overlay, normal, normal, normal;
+        mix-blend-mode: var(--bg-blend-mode);
+        z-index: -1;
+    }
 
-	.with-background.bg-variant::before {
-		--hero-bg: var(--bg-image-subtle-1);
-	}
+    .with-background.bg-variant::before {
+        --hero-bg: var(--bg-image-subtle-1);
+    }
 
-	.section-header {
-		justify-self: center;
-		text-align: center;
-		max-width: 50ch;
-		font-size: var(--text-md);
-		color: var(--gray-300);
-	}
+    .section-header {
+        justify-self: center;
+        text-align: center;
+        max-width: 50ch;
+        font-size: var(--text-md);
+        color: var(--gray-300);
+    }
 
-	.section-header h3 {
-		font-size: var(--text-2xl);
-	}
+    .section-header h3 {
+        font-size: var(--text-2xl);
+    }
 
-	@media (min-width: 50em) {
-		.section {
-			grid-template-columns: repeat(4, 1fr);
-			grid-template-areas: 'header header header header' 'gallery gallery gallery gallery';
-			gap: 5rem;
-		}
+    @media (min-width: 50em) {
+        .section {
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-areas: 'header header header header' 'gallery gallery gallery gallery';
+            gap: 5rem;
+        }
 
-		.section.with-cta {
-			grid-template-areas: 'header header header cta' 'gallery gallery gallery gallery';
-		}
+        .section.with-cta {
+            grid-template-areas: 'header header header cta' 'gallery gallery gallery gallery';
+        }
 
-		.section-header {
-			grid-area: header;
-			font-size: var(--text-lg);
-		}
+        .section-header {
+            grid-area: header;
+            font-size: var(--text-lg);
+        }
 
-		.section-header h3 {
-			font-size: var(--text-4xl);
-		}
+        .section-header h3 {
+            font-size: var(--text-4xl);
+        }
 
-		.with-cta .section-header {
-			justify-self: flex-start;
-			text-align: left;
-		}
+        .with-cta .section-header {
+            justify-self: flex-start;
+            text-align: left;
+        }
 
-		.gallery {
-			grid-area: gallery;
-		}
+        .gallery {
+            grid-area: gallery;
+        }
 
-		.cta {
-			grid-area: cta;
-		}
-	}
+        .cta {
+            grid-area: cta;
+        }
+    }
 
-	/* ====================================================== */
+    /* ====================================================== */
 
-	/* 1. Force the grid to span full width and create responsive columns */
-	.card-grid {
-		display: grid !important;
-		grid-template-columns: 1fr; /* 1 column on mobile */
-		gap: 1.5rem;
-		width: 100% !important;
-		max-width: 100% !important;
-		align-self: stretch !important; /* ensure the grid expands inside a parent flex container */
-		margin-inline: auto;
-	}
+    /* 1. Force the grid to span full width and create responsive columns */
+    .card-grid {
+        display: grid !important;
+        grid-template-columns: 1fr; /* 1 column on mobile */
+        gap: 1.5rem;
+        width: 100% !important;
+        max-width: 100% !important;
+        align-self: stretch !important; /* ensure the grid expands inside a parent flex container */
+        margin-inline: auto;
+    }
 
-	@media (min-width: 50em) {
-		.card-grid {
-			/* Force exactly 3 equal-width columns on desktop */
-			grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-			gap: 2rem;
-			grid-area: gallery;
-			grid-column: 1 / -1;
-		}
-	}
+    @media (min-width: 50em) {
+        .card-grid {
+            /* Force exactly 3 equal-width columns on desktop */
+            grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+            gap: 2rem;
+            grid-area: gallery;
+            grid-column: 1 / -1;
+        }
+    }
 
-	/* 2. Force each card to stretch to fill its grid column */
-	.category-card {
-		display: flex;
-		flex-direction: column;
-		width: 100% !important; /* Takes full width of its 1fr grid column */
-		min-width: 0; /* Stops text from expanding the column */
-		box-sizing: border-box;
-		position: relative;
-		overflow: hidden;
-		padding: 1.5rem;
-		min-height: 13rem;
-		background: linear-gradient(180deg, rgba(31, 41, 55, 0.95), rgba(15, 23, 42, 0.95));
-		border: 1px solid rgba(148, 163, 184, 0.15);
-		border-radius: 1.5rem;
-		text-decoration: none;
-		color: inherit;
-		box-shadow: var(--shadow-md);
-		transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-	}
+    /* 2. Force each card to stretch to fill its grid column */
+    .category-card {
+        display: flex;
+        flex-direction: column;
+        width: 100% !important; /* Takes full width of its 1fr grid column */
+        min-width: 0; /* Stops text from expanding the column */
+        box-sizing: border-box;
+        position: relative;
+        overflow: hidden;
+        padding: 1.5rem;
+        min-height: 13rem;
+        background: linear-gradient(180deg, rgba(31, 41, 55, 0.95), rgba(15, 23, 42, 0.95));
+        border: 1px solid rgba(148, 163, 184, 0.15);
+        border-radius: 1.5rem;
+        text-decoration: none;
+        color: inherit;
+        box-shadow: var(--shadow-md);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
 
-	.category-card:hover,
-	.category-card:focus-visible {
-		transform: translateY(-0.25rem);
-		box-shadow: var(--shadow-lg);
-		border-color: rgba(148, 163, 184, 0.3);
-	}
+    .category-card:hover,
+    .category-card:focus-visible {
+        transform: translateY(-0.25rem);
+        box-shadow: var(--shadow-lg);
+        border-color: rgba(148, 163, 184, 0.3);
+    }
 
-	.category-card.work {
-		background-image: radial-gradient(circle at top left, rgba(56, 189, 248, 0.14), transparent 45%);
-	}
+    .category-card.work {
+        background-image: radial-gradient(circle at top left, rgba(56, 189, 248, 0.14), transparent 45%);
+    }
 
-	.category-card.personal {
-		background-image: radial-gradient(circle at top left, rgba(232, 121, 249, 0.14), transparent 45%);
-	}
+    .category-card.personal {
+        background-image: radial-gradient(circle at top left, rgba(232, 121, 249, 0.14), transparent 45%);
+    }
 
-	.category-card.studies {
-		background-image: radial-gradient(circle at top left, rgba(34, 211, 238, 0.14), transparent 45%);
-	}
+    .category-card.studies {
+        background-image: radial-gradient(circle at top left, rgba(34, 211, 238, 0.14), transparent 45%);
+    }
 
-	.icon-card {
-		display: grid;
-		place-items: center;
-		width: 4rem;
-		height: 4rem;
-		background: rgba(255, 255, 255, 0.08);
-		border-radius: 1rem;
-	}
+    .icon-card {
+        display: grid;
+        place-items: center;
+        width: 4rem;
+        height: 4rem;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 1rem;
+    }
 
-	/* 3. Ensure child elements don't collapse */
-	.card-content {
-		width: 100%;
-		min-width: 0;
-		display: grid;
-		gap: 0.75rem;
-	}
+    /* 3. Ensure child elements don't collapse */
+    .card-content {
+        width: 100%;
+        min-width: 0;
+        display: grid;
+        gap: 0.75rem;
+    }
 
-	.card-content h4 {
-		margin: 0;
-		font-size: var(--text-2xl);
-	}
+    .card-content h4 {
+        margin: 0;
+        font-size: var(--text-2xl);
+    }
 
-	.eyebrow {
-		font-size: var(--text-sm);
-		font-weight: 700;
-		text-transform: uppercase;
-		letter-spacing: 0.18em;
-		color: var(--accent-light);
-		margin: 0;
-	}
+    .eyebrow {
+        font-size: var(--text-sm);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: var(--accent-light);
+        margin: 0;
+    }
 
-	.link-text {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.5rem;
-		font-weight: 700;
-		color: var(--text-accent);
-	}
+    .link-text {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 700;
+        color: var(--text-accent);
+    }
 
-	.link-text svg {
-		transform: translateX(0);
-		transition: transform 0.2s ease;
-	}
+    .link-text svg {
+        transform: translateX(0);
+        transition: transform 0.2s ease;
+    }
 
-	.category-card:hover .link-text svg {
-		transform: translateX(0.25rem);
-	}
+    .category-card:hover .link-text svg {
+        transform: translateX(0.25rem);
+    }
 
-	.card-content p {
-		margin: 0;
-		color: var(--gray-300);
-	}
+    .card-content p {
+        margin: 0;
+        color: var(--gray-300);
+    }
 
-	@media (min-width: 50em) {
-		.card-grid {
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-		}
-	}
+    @media (min-width: 50em) {
+        .card-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
 
-	.mention-card {
-		display: flex;
-		height: 7rem;
-		justify-content: center;
-		align-items: center;
-		text-align: center;
-		border: 1px solid var(--gray-800);
-		border-radius: 1.5rem;
-		color: var(--gray-300);
-		background: var(--gradient-subtle);
-		box-shadow: var(--shadow-sm);
-	}
+    .mention-card {
+        display: flex;
+        height: 7rem;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border: 1px solid var(--gray-800);
+        border-radius: 1.5rem;
+        color: var(--gray-300);
+        background: var(--gradient-subtle);
+        box-shadow: var(--shadow-sm);
+        padding: 1rem;
+    }
 
-	@media (min-width: 50em) {
-		.mention-card {
-			border-radius: 1.5rem;
-			height: 9.5rem;
-		}
-	}
+    .mention-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .mention-title {
+        font-weight: 700;
+        font-size: var(--text-md);
+        color: var(--gray-100);
+        margin: 0;
+    }
+
+    .mention-subtitle {
+        font-size: var(--text-xs);
+        color: var(--gray-400);
+    }
+
+    @media (min-width: 50em) {
+        .mention-card {
+            border-radius: 1.5rem;
+            height: 9.5rem;
+        }
+    }
 </style>

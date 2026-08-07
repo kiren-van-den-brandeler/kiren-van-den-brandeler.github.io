@@ -6,6 +6,8 @@ discipline:
 - "plc-robotics"
 - "engineering"
 - "industrial-design"
+featured: true
+featuredOrder: 3
 coverImage: "/assets/ratlab/exploded1.gif"
 date: 2021-11-01
 ---

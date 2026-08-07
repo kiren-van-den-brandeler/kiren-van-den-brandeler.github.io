@@ -1,7 +1,7 @@
 ---
 title: "Weaverbot: Autonomous Mobile 3D Construction Robot"
 description: "Design of a semi-autonomous spider-like additive manufacturing robot that deploys off transport, elevates, and 3D prints housing directly under its footprint."
-category: "work"
+category: "studies"
 discipline:
   - "industrial-design"
   - "engineering"
