@@ -267,17 +267,36 @@ const featuredProjects = (await getCollection('projects'))
 
 	/* ====================================================== */
 
+	/* 1. Force the grid to span full width and create responsive columns */
 	.card-grid {
-		display: grid;
-		grid-template-columns: 1fr;
+		display: grid !important;
+		grid-template-columns: 1fr; /* 1 column on mobile */
 		gap: 1.5rem;
+		width: 100% !important;
+		max-width: 100% !important;
+		align-self: stretch !important; /* ensure the grid expands inside a parent flex container */
+		margin-inline: auto;
 	}
 
+	@media (min-width: 50em) {
+		.card-grid {
+			/* Force exactly 3 equal-width columns on desktop */
+			grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+			gap: 2rem;
+			grid-area: gallery;
+			grid-column: 1 / -1;
+		}
+	}
+
+	/* 2. Force each card to stretch to fill its grid column */
 	.category-card {
-		display: grid;
-		grid-template-columns: auto 1fr;
-		align-items: stretch;
-		gap: 1rem;
+		display: flex;
+		flex-direction: column;
+		width: 100% !important; /* Takes full width of its 1fr grid column */
+		min-width: 0; /* Stops text from expanding the column */
+		box-sizing: border-box;
+		position: relative;
+		overflow: hidden;
 		padding: 1.5rem;
 		min-height: 13rem;
 		background: linear-gradient(180deg, rgba(31, 41, 55, 0.95), rgba(15, 23, 42, 0.95));
@@ -317,7 +336,10 @@ const featuredProjects = (await getCollection('projects'))
 		border-radius: 1rem;
 	}
 
+	/* 3. Ensure child elements don't collapse */
 	.card-content {
+		width: 100%;
+		min-width: 0;
 		display: grid;
 		gap: 0.75rem;
 	}

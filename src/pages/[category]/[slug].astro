@@ -12,14 +12,14 @@ interface Props {
 }
 
 export async function getStaticPaths() {
-	const entries = await getCollection('projects');
-	return entries.map((entry) => ({
-		params: {
-			category: entry.data.category,
-			slug: entry.id,
-		},
-		props: { entry },
-	}));
+    const entries = await getCollection('projects');
+    return entries.map((entry) => {
+        const slug = (entry as any).slug ?? entry.id;
+        return {
+            params: { category: entry.data.category, slug },
+            props: { entry },
+        };
+    });
 }
 
 const { entry } = Astro.props as Props;
@@ -57,7 +57,7 @@ const { Content } = await render(entry);
 </BaseLayout>
 
 <style>
-	headers {
+	header {
 		margin-bottom: 1rem;
 	}
 
