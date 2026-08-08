@@ -22,6 +22,37 @@ date: 2021-11-01
 
 This project involved designing, programming, and manufacturing highly specialized operant conditioning testing chambers for behavioral neuroscience research involving lab rats. The apparatus required precise mechanical design to ensure compatibility with local automated manufacturing, integrated sensor logic for precise event monitoring, and absolute adherence to strict biological safety and laboratory hygiene protocols.
 
+## Visual Documentation
+
+The following figures capture the main design iterations, enclosure concepts, control hardware, and laboratory deployment context that shaped the final chamber system.
+
+![Early chamber box assembly overview](/assets/ratlab/box%201-2.gif)
+<figcaption><small><strong>Prototype Box Layout:</strong> Early chamber box assembly views showing the initial enclosure geometry and access strategy.</small></figcaption>
+
+![Secondary chamber box assembly view](/assets/ratlab/box%203-4.gif)
+<figcaption><small><strong>Integrated Enclosure Development:</strong> Follow-on box assembly views showing refinement of panel spacing and component mounting zones.</small></figcaption>
+
+![Additional chamber box assembly detail](/assets/ratlab/box%205.gif)
+<figcaption><small><strong>Component Arrangement Study:</strong> Additional box layout reference used to balance internal hardware placement with service access.</small></figcaption>
+
+![Control modules for the Arduino-based automation system](/assets/ratlab/control-modules.png)
+<figcaption><small><strong>Control Hardware Module:</strong> Custom Arduino-based control modules and interface hardware prepared for experimental event logic.</small></figcaption>
+
+![Exploded assembly animation of the chamber structure](/assets/ratlab/exploded1.gif)
+<figcaption><small><strong>Exploded Assembly Overview:</strong> Animated CAD sequence showing core structural panels, modular inserts, and assembly sequence.</small></figcaption>
+
+![Secondary exploded assembly view](/assets/ratlab/exploded2.gif)
+<figcaption><small><strong>Disassembly and Maintenance Focus:</strong> Secondary exploded view highlighting panel separation and hardware access for lab servicing.</small></figcaption>
+
+![Long enclosure configuration reference](/assets/ratlab/long-enclosures.png)
+<figcaption><small><strong>Long-Form Enclosure Variant:</strong> Reference image of the extended enclosure configuration designed for larger test layouts.</small></figcaption>
+
+![Testing laboratory setup](/assets/ratlab/testing-lab.png)
+<figcaption><small><strong>Laboratory Deployment Context:</strong> Testing environment reference showing the chamber in relation to staff workflows and experimental setup.</small></figcaption>
+
+![Water chamber integration reference](/assets/ratlab/water-chambers.png)
+<figcaption><small><strong>Water Chamber Interface Study:</strong> Conceptual reference showing the chamber interface relationship with water-based experimental modules.</small></figcaption>
+
 ## 1. 3D Modeling & Exploded Assemblies (CAD Design)
 
 The structural components of the chambers were fully designed using code-driven CAD in **OpenSCAD**. OpenSCAD was selected to allow parametric changes as chamber iterations shifted based on feedback from the laboratory staff.

@@ -38,7 +38,7 @@ const techStack = [
         <div class="wrapper stack gap-8 lg:gap-20">
             <header class="hero">
                 <Hero
-                    title="Hi — I'm Kiren van den Brandeler"
+                    title="Kiren van den Brandeler"
                     tagline="Mechatronics & Automation Engineer — PLC Logic · Mechanical CAD · Embedded Systems"
                     align="start"
                 >
@@ -157,19 +157,23 @@ const techStack = [
 </BaseLayout>
 
 <style>
+    /* Default: two-column grid on mobile — text left, image right */
     .hero {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+        align-items: start;
     }
 
     .roles {
         display: none;
     }
 
+    /* Ensure the image is always part of the document flow and keeps 3:4 ratio */
     .hero img {
-        aspect-ratio: 5 / 4;
+        width: 100%;
+        display: block;
+        aspect-ratio: 3 / 4;
         object-fit: cover;
         object-position: top;
         border-radius: 1.5rem;
@@ -177,8 +181,8 @@ const techStack = [
     }
 
     @media (min-width: 50em) {
+        /* Desktop: revert to proportional grid (6fr/4fr) */
         .hero {
-            display: grid;
             grid-template-columns: 6fr 4fr;
             padding-inline: 2.5rem;
             gap: 3.75rem;
@@ -191,7 +195,9 @@ const techStack = [
         }
 
         .hero img {
+            width: 100%;
             aspect-ratio: 3 / 4;
+            min-height: 310px;
             border-radius: 4.5rem;
             object-fit: cover;
         }

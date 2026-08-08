@@ -19,8 +19,11 @@ export async function getStaticPaths() {
 }
 
 const category = Astro.params.category;
-const projects = (await getCollection('projects'))
-	.filter((project) => project.data.category === category)
+const projEntries = await getCollection('projects');
+const studyEntries = await getCollection('studies');
+
+const projects = [...projEntries, ...studyEntries]
+	.filter((entry) => entry.data.category === category)
 	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 

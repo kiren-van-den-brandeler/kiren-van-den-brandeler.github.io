@@ -8,11 +8,14 @@ import Pill from '../../components/Pill.astro';
 import ContactCTA from '../../components/ContactCTA.astro';
 
 interface Props {
-	entry: CollectionEntry<'projects'>;
+	entry: CollectionEntry<'projects'> | CollectionEntry<'studies'>;
 }
 
 export async function getStaticPaths() {
-    const entries = await getCollection('projects');
+    const projectEntries = await getCollection('projects');
+    const studyEntries = await getCollection('studies');
+    const entries = [...projectEntries, ...studyEntries];
+
     return entries.map((entry) => {
         const slug = (entry as any).slug ?? entry.id;
         return {
@@ -23,6 +26,13 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props as Props;
+// Normalize discipline to an array if present to support both projects and studies collections
+const disciplines = Array.isArray((entry as any).data.discipline)
+	? (entry as any).data.discipline
+	: (entry as any).data.discipline
+	? [(entry as any).data.discipline]
+	: [];
+
 const { Content } = await render(entry);
 ---
 
@@ -35,7 +45,7 @@ const { Content } = await render(entry);
 						<div class="details">
 							<div class="tags">
 								<Pill>{entry.data.category}</Pill>
-								{entry.data.discipline.map((tag) => <Pill>{tag}</Pill>)}
+								{disciplines.map((tag) => <Pill>{tag}</Pill>)}
 							</div>
 							<p class="description">{entry.data.description}</p>
 						</div>
